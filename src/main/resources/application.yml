@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/usuarioapi
+    username: root
+
+feign:
+  viacep:
+    url: viacep.com.br/ws/
+

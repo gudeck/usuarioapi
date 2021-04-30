@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  mysql8:
+    extends:
+      service: mysql8
+      file: containers/mysql8.yml
+    ports:
+      - 3306:3306
