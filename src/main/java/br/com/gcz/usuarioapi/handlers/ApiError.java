@@ -17,7 +17,7 @@ public final class ApiError {
         this.status = status.value();
         this.error = status.getReasonPhrase();
         this.message = message;
-        this.path = path;
+        this.path = path.replace("uri=", "");
     }
 
     public String getError() {

@@ -12,11 +12,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class NotValidHandler extends ResponseEntityExceptionHandler {
 
-    private ApiError createBadRequestError(WebRequest request, String message) {
-        String path = request.getDescription(false).replace("uri=", "");
-        return new ApiError(HttpStatus.BAD_REQUEST, message, path);
-    }
-
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex,
@@ -26,7 +21,7 @@ public class NotValidHandler extends ResponseEntityExceptionHandler {
 
         String message = ex.getBindingResult().getAllErrors().stream().findFirst().map(ObjectError::getDefaultMessage).orElseGet(String::new);
 
-        ApiError apiError = createBadRequestError(request, message);
+        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, message, request.getDescription(false));
         return ResponseEntity.badRequest().headers(headers).body(apiError);
     }
 }
