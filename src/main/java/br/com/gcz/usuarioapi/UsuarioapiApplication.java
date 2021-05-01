@@ -9,7 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class UsuarioapiApplication {
 
     public static void main(String[] args) {
-
         SpringApplication.run(UsuarioapiApplication.class, args);
     }
 

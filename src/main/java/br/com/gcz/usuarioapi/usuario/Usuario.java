@@ -1,14 +1,9 @@
 package br.com.gcz.usuarioapi.usuario;
 
-import org.hibernate.validator.constraints.br.CPF;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 @Entity
@@ -18,19 +13,45 @@ public class Usuario {
     @GeneratedValue
     private Long id;
 
-    @NotBlank
+    @Column(nullable = false)
     private String nome;
 
-    @Email
-    @NotBlank
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @CPF
-    @NotNull
-    private Integer cpf;
+    @Column(nullable = false, unique = true)
+    private String cpf;
 
-    @Past
-    @NotNull
+    @Column(nullable = false)
     private LocalDate dataNascimento;
 
+    public Usuario(String nome, String email, String cpf, LocalDate dataNascimento) {
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+    }
+
+    public Usuario() {
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
 }
