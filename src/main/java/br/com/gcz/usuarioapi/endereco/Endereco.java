@@ -1,4 +1,4 @@
-package br.com.gcz.usuarioapi;
+package br.com.gcz.usuarioapi.endereco;
 
 import br.com.gcz.usuarioapi.validation.constraint.CEP;
 
