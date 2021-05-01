@@ -11,21 +11,21 @@ import java.time.LocalDate;
 
 public class UsuarioRequest {
 
-    @NotBlank
+    @NotBlank(message = "{usuario.vazio.nome}")
     private String nome;
 
-    @Email
-    @UsuarioUniqueColumn(value = "email", message = "Email já cadastrado")
-    @NotBlank
+    @Email(message = "{usuario.invalido.email}")
+    @UsuarioUniqueColumn(value = "email", message = "{usuario.unico.email}")
+    @NotBlank(message = "{usuario.vazio.email}")
     private String email;
 
-    @CPF
-    @UsuarioUniqueColumn(value = "cpf", message = "CPF já cadastrado")
-    @NotNull
+    @CPF(message = "{usuario.invalido.cpf}")
+    @UsuarioUniqueColumn(value = "cpf", message = "{usuario.unico.cpf}")
+    @NotBlank(message = "{usuario.vazio.cpf}")
     private String cpf;
 
-    @Past
-    @NotNull
+    @Past(message = "{usuario.invalido.dataPassada}")
+    @NotNull(message = "{usuario.vazio.dataNascimento}")
     private LocalDate dataNascimento;
 
     public void setCpf(String cpf) {
