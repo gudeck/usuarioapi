@@ -1,14 +1,14 @@
 package br.com.gcz.usuarioapi.endereco;
 
 public class EnderecoResponse {
-    private final Long id;
-    private final String cep;
-    private final String estado;
-    private final String cidade;
-    private final String bairro;
-    private final String logradouro;
-    private final String numero;
-    private final String complemento;
+    private Long id;
+    private String cep;
+    private String estado;
+    private String cidade;
+    private String bairro;
+    private String logradouro;
+    private String numero;
+    private String complemento;
 
     public EnderecoResponse(Long id, String cep, String estado, String cidade,
                             String bairro, String logradouro, String numero, String complemento) {

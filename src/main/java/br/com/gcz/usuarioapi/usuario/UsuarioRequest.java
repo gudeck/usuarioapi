@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
-public final class UsuarioRequest {
+public class UsuarioRequest {
 
     @NotBlank(message = "{campo.vazio}")
     private final String nome;

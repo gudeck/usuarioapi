@@ -4,7 +4,7 @@ import br.com.gcz.usuarioapi.validation.constraint.CEP;
 
 import javax.validation.constraints.NotBlank;
 
-public final class EnderecoRequest {
+public class EnderecoRequest {
 
     @CEP(message = "{endereco.invalido.cep}")
     @NotBlank(message = "{campo.vazio}")

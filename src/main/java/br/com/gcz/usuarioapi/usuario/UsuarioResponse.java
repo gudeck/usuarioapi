@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 
 public class UsuarioResponse {
 
-    private final Long id;
-    private final String nome;
-    private final String email;
-    private final String cpf;
-    private final LocalDate dataNascimento;
+    private Long id;
+    private String nome;
+    private String email;
+    private String cpf;
+    private LocalDate dataNascimento;
     private List<EnderecoResponse> enderecos;
 
     public UsuarioResponse(Long id, String nome, String email, String cpf, LocalDate dataNascimento) {

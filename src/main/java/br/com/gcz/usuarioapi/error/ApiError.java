@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import java.time.LocalDateTime;
 
 
-public final class ApiError {
+public class ApiError {
 
     private final LocalDateTime timestamp = LocalDateTime.now();
     private final Integer status;
