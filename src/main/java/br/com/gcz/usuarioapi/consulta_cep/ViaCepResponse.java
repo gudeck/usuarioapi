@@ -20,4 +20,8 @@ public final class ViaCepResponse {
         this.uf = uf;
         this.numero = numero;
     }
+
+    public String getCep() {
+        return cep;
+    }
 }

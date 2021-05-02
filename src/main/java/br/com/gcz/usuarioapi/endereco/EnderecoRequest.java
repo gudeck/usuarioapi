@@ -39,6 +39,10 @@ public final class EnderecoRequest {
         this.complemento = complemento;
     }
 
+    public String getCep() {
+        return cep;
+    }
+
     public Endereco toEndereco(Long idUsuario) {
         return new Endereco(idUsuario, cep, estado, cidade, bairro, logradouro, numero, complemento);
     }
