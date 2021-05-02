@@ -1,39 +1,67 @@
 package br.com.gcz.usuarioapi.endereco;
 
-import br.com.gcz.usuarioapi.validation.constraint.CEP;
+import br.com.gcz.usuarioapi.usuario.Usuario;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Endereco {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CEP
-    @NotBlank
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
+
+    @Column(nullable = false)
     private String cep;
 
-    @NotBlank
+    @Column(nullable = false)
     private String estado;
 
-    @NotBlank
+    @Column(nullable = false)
     private String cidade;
 
-    @NotBlank
+    @Column(nullable = false)
     private String bairro;
 
-    @NotBlank
+    @Column(nullable = false)
     private String logradouro;
 
-    @NotBlank
+    @Column(nullable = false)
     private String numero;
 
-    @NotBlank
+    @Column(nullable = false)
     private String complemento;
 
+    public Endereco() {
+    }
+
+    public Endereco(Long idUsuario, String cep, String estado, String cidade,
+                    String bairro, String logradouro, String numero, String complemento) {
+        this.usuario = new Usuario(idUsuario);
+        this.cep = cep;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.bairro = bairro;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public EnderecoResponse toEnderecoResponse() {
+        return new EnderecoResponse(id, cep, estado, cidade, bairro, logradouro, numero, complemento);
+    }
 }

@@ -3,6 +3,7 @@ package br.com.gcz.usuarioapi.usuario;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 public class Usuario {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -25,6 +26,13 @@ public class Usuario {
     @Column(nullable = false)
     private LocalDate dataNascimento;
 
+    public Usuario() {
+    }
+
+    public Usuario(Long id) {
+        this.id = id;
+    }
+
     public Usuario(String nome, String email, String cpf, LocalDate dataNascimento) {
         this.nome = nome;
         this.email = email;
@@ -32,26 +40,11 @@ public class Usuario {
         this.dataNascimento = dataNascimento;
     }
 
-    public Usuario() {
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
     public Long getId() {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public UsuarioResponse toUsuarioResponse() {
+        return new UsuarioResponse(id, nome, email, cpf, dataNascimento);
     }
 }
