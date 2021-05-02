@@ -9,42 +9,33 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
-public class UsuarioRequest {
+public final class UsuarioRequest {
 
-    @NotBlank(message = "{usuario.vazio.nome}")
-    private String nome;
+    @NotBlank(message = "{campo.vazio}")
+    private final String nome;
 
     @Email(message = "{usuario.invalido.email}")
     @UsuarioUniqueColumn(value = "email", message = "{usuario.unico.email}")
-    @NotBlank(message = "{usuario.vazio.email}")
-    private String email;
+    @NotBlank(message = "{campo.vazio}")
+    private final String email;
 
     @CPF(message = "{usuario.invalido.cpf}")
     @UsuarioUniqueColumn(value = "cpf", message = "{usuario.unico.cpf}")
-    @NotBlank(message = "{usuario.vazio.cpf}")
-    private String cpf;
+    @NotBlank(message = "{campo.vazio}")
+    private final String cpf;
 
     @Past(message = "{usuario.invalido.dataPassada}")
-    @NotNull(message = "{usuario.vazio.dataNascimento}")
-    private LocalDate dataNascimento;
+    @NotNull(message = "{campo.vazio}")
+    private final LocalDate dataNascimento;
 
-    public void setCpf(String cpf) {
+    public UsuarioRequest(String nome, String email, String cpf, LocalDate dataNascimento) {
+        this.nome = nome;
+        this.email = email;
         this.cpf = cpf;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public Usuario toUsuario() {
-        return new Usuario(this.nome, this.email, this.cpf, this.dataNascimento);
+        return new Usuario(nome, email, cpf, dataNascimento);
     }
 }
