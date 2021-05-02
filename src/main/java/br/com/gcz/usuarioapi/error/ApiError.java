@@ -1,4 +1,4 @@
-package br.com.gcz.usuarioapi.handlers;
+package br.com.gcz.usuarioapi.error;
 
 import org.springframework.http.HttpStatus;
 
