@@ -22,7 +22,7 @@ public class Endereco {
     private Usuario usuario;
 
     @Column(nullable = false)
-    private String cep;
+    private Long cep;
 
     @Column(nullable = false)
     private String estado;
@@ -45,7 +45,7 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(Long idUsuario, String cep, String estado, String cidade,
+    public Endereco(Long idUsuario, Long cep, String estado, String cidade,
                     String bairro, String logradouro, String numero, String complemento) {
         this.usuario = new Usuario(idUsuario);
         this.cep = cep;

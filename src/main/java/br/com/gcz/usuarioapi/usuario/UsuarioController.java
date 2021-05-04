@@ -39,7 +39,7 @@ public class UsuarioController {
     @PutMapping("/{id}/enderecos")
     public ResponseEntity<Void> associarEndereco(@PathVariable Long id, @RequestBody @Valid EnderecoRequest request) {
         validarUsuario(id);
-        validarEndereco(request.getCep());
+        validarEndereco(request.cep());
         Endereco endereco = enderecoRepository.save(request.toEndereco(id));
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}/enderecos/{id}").buildAndExpand(id, endereco.getId()).toUri();
         return ResponseEntity.created(uri).build();
@@ -48,8 +48,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponse> buscarPorId(@PathVariable Long id) {
-        UsuarioResponse response = validarUsuario(id).toUsuarioResponse();
-        response.setEnderecos(enderecoRepository.findAllByUsuarioId(response.getId()));
+        UsuarioResponse response = validarUsuario(id).toUsuarioResponse(enderecoRepository.findAllByUsuarioId(id));
         return ResponseEntity.ok(response);
     }
 
@@ -60,9 +59,9 @@ public class UsuarioController {
         return ResponseEntity.created(uri).build();
     }
 
-    private void validarEndereco(String cep) {
+    private void validarEndereco(Long cep) {
         ViaCepResponse response = viaCepClient.buscarPorCep(cep);
-        if (Strings.isBlank(response.getCep())) {
+        if (Strings.isBlank(response.cep())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "endereco.invalido");
         }
     }

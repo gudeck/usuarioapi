@@ -23,7 +23,7 @@ public class NotValidHandler extends ResponseEntityExceptionHandler {
                 .min((error1, error2) -> error1.getField().compareToIgnoreCase(error2.getField()))
                 .map(ObjectError::getDefaultMessage).orElseGet(String::new);
 
-        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, message, request.getDescription(false));
-        return ResponseEntity.badRequest().headers(headers).body(apiError);
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, message, request.getDescription(false));
+        return ResponseEntity.badRequest().headers(headers).body(apiErrorResponse);
     }
 }

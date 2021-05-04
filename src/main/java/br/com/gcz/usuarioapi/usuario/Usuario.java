@@ -1,11 +1,16 @@
 package br.com.gcz.usuarioapi.usuario;
 
+import br.com.gcz.usuarioapi.endereco.Endereco;
+import br.com.gcz.usuarioapi.endereco.EnderecoResponse;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Usuario {
@@ -44,7 +49,8 @@ public class Usuario {
         return id;
     }
 
-    public UsuarioResponse toUsuarioResponse() {
-        return new UsuarioResponse(id, nome, email, cpf, dataNascimento);
+    public UsuarioResponse toUsuarioResponse(List<Endereco> enderecos) {
+        List<EnderecoResponse> enderecosResponse = enderecos.stream().map(Endereco::toEnderecoResponse).collect(Collectors.toList());
+        return new UsuarioResponse(id, nome, email, cpf, dataNascimento, enderecosResponse);
     }
 }
