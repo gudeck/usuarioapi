@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
@@ -31,6 +33,9 @@ public class Usuario {
     @Column(nullable = false)
     private LocalDate dataNascimento;
 
+    @OneToMany(orphanRemoval = true, mappedBy = "usuario")
+    private Set<Endereco> enderecos;
+
     public Usuario() {
     }
 
@@ -49,7 +54,7 @@ public class Usuario {
         return id;
     }
 
-    public UsuarioResponse toUsuarioResponse(List<Endereco> enderecos) {
+    public UsuarioResponse toUsuarioResponse() {
         List<EnderecoResponse> enderecosResponse = enderecos.stream().map(Endereco::toEnderecoResponse).collect(Collectors.toList());
         return new UsuarioResponse(id, nome, email, cpf, dataNascimento, enderecosResponse);
     }

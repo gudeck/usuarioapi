@@ -48,7 +48,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponse> buscarPorId(@PathVariable Long id) {
-        UsuarioResponse response = validarUsuario(id).toUsuarioResponse(enderecoRepository.findAllByUsuarioId(id));
+        UsuarioResponse response = validarUsuario(id).toUsuarioResponse();
         return ResponseEntity.ok(response);
     }
 
