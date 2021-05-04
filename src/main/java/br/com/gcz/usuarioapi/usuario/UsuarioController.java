@@ -21,6 +21,21 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 
+/**
+ * API para cadastro de usuários e
+ * associação de endereços
+ * <br>
+ * Endpoints:
+ * <br>
+ * <ul>
+ *     <li>POST - /usuarios</li>
+ *     <li>GET  - /usuarios/{id}</li>
+ *     <li>PUT  - /usuarios/{id}/enderecos</li>
+ * </ul>
+ *
+ * @author Gustavo Zucolotto
+ */
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
