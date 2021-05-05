@@ -1,10 +1,14 @@
-package br.com.gcz.usuarioapi.usuario;
+package br.com.gcz.usuarioapi.controller;
 
-import br.com.gcz.usuarioapi.consulta_cep.ViaCepClient;
-import br.com.gcz.usuarioapi.consulta_cep.ViaCepResponse;
-import br.com.gcz.usuarioapi.endereco.Endereco;
-import br.com.gcz.usuarioapi.endereco.EnderecoRepository;
-import br.com.gcz.usuarioapi.endereco.EnderecoRequest;
+import br.com.gcz.usuarioapi.controller.repository.EnderecoRepository;
+import br.com.gcz.usuarioapi.controller.repository.UsuarioRepository;
+import br.com.gcz.usuarioapi.controller.request.EnderecoRequest;
+import br.com.gcz.usuarioapi.controller.request.UsuarioRequest;
+import br.com.gcz.usuarioapi.controller.response.UsuarioResponse;
+import br.com.gcz.usuarioapi.controller.response.ViaCepResponse;
+import br.com.gcz.usuarioapi.domain.Endereco;
+import br.com.gcz.usuarioapi.domain.Usuario;
+import br.com.gcz.usuarioapi.feign.ViaCepClient;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.apache.logging.log4j.util.Strings;

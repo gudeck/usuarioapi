@@ -1,6 +1,7 @@
-package br.com.gcz.usuarioapi.endereco;
+package br.com.gcz.usuarioapi.controller.request;
 
-import br.com.gcz.usuarioapi.validation.constraint.CEP;
+import br.com.gcz.usuarioapi.annotation.constraint.CEP;
+import br.com.gcz.usuarioapi.domain.Endereco;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

@@ -1,6 +1,6 @@
-package br.com.gcz.usuarioapi.endereco;
+package br.com.gcz.usuarioapi.domain;
 
-import br.com.gcz.usuarioapi.usuario.Usuario;
+import br.com.gcz.usuarioapi.controller.response.EnderecoResponse;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

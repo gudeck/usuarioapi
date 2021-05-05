@@ -1,6 +1,4 @@
-package br.com.gcz.usuarioapi.usuario;
-
-import br.com.gcz.usuarioapi.endereco.EnderecoResponse;
+package br.com.gcz.usuarioapi.controller.response;
 
 import java.time.LocalDate;
 import java.util.List;

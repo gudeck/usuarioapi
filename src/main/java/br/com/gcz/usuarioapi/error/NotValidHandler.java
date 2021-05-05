@@ -1,5 +1,6 @@
 package br.com.gcz.usuarioapi.error;
 
+import br.com.gcz.usuarioapi.controller.response.ApiErrorResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

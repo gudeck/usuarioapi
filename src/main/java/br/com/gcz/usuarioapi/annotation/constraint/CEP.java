@@ -1,6 +1,6 @@
-package br.com.gcz.usuarioapi.validation.constraint;
+package br.com.gcz.usuarioapi.annotation.constraint;
 
-import br.com.gcz.usuarioapi.validation.validator.CepValidator;
+import br.com.gcz.usuarioapi.annotation.constraint.validator.CepValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

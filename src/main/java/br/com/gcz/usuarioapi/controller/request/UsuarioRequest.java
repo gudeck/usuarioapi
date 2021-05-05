@@ -1,6 +1,7 @@
-package br.com.gcz.usuarioapi.usuario;
+package br.com.gcz.usuarioapi.controller.request;
 
-import br.com.gcz.usuarioapi.validation.constraint.UsuarioUniqueColumn;
+import br.com.gcz.usuarioapi.annotation.constraint.UsuarioUniqueColumn;
+import br.com.gcz.usuarioapi.domain.Usuario;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;

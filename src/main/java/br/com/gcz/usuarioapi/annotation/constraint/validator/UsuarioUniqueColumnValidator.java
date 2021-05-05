@@ -1,6 +1,6 @@
-package br.com.gcz.usuarioapi.validation.validator;
+package br.com.gcz.usuarioapi.annotation.constraint.validator;
 
-import br.com.gcz.usuarioapi.validation.constraint.UsuarioUniqueColumn;
+import br.com.gcz.usuarioapi.annotation.constraint.UsuarioUniqueColumn;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

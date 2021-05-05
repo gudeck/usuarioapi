@@ -1,5 +1,6 @@
-package br.com.gcz.usuarioapi.consulta_cep;
+package br.com.gcz.usuarioapi.feign;
 
+import br.com.gcz.usuarioapi.controller.response.ViaCepResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

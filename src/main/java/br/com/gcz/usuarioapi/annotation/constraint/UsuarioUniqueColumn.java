@@ -1,6 +1,6 @@
-package br.com.gcz.usuarioapi.validation.constraint;
+package br.com.gcz.usuarioapi.annotation.constraint;
 
-import br.com.gcz.usuarioapi.validation.validator.UsuarioUniqueColumnValidator;
+import br.com.gcz.usuarioapi.annotation.constraint.validator.UsuarioUniqueColumnValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
