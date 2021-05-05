@@ -5,6 +5,8 @@ import br.com.gcz.usuarioapi.consulta_cep.ViaCepResponse;
 import br.com.gcz.usuarioapi.endereco.Endereco;
 import br.com.gcz.usuarioapi.endereco.EnderecoRepository;
 import br.com.gcz.usuarioapi.endereco.EnderecoRequest;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -51,25 +54,39 @@ public class UsuarioController {
         this.viaCepClient = viaCepClient;
     }
 
-    @PutMapping("/{id}/enderecos")
-    public ResponseEntity<Void> associarEndereco(@PathVariable Long id, @RequestBody @Valid EnderecoRequest request) {
-        validarUsuario(id);
-        validarEndereco(request.cep());
-        Endereco endereco = enderecoRepository.save(request.toEndereco(id));
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}/enderecos/{id}").buildAndExpand(id, endereco.getId()).toUri();
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Endereço associado com sucesso"),
+            @ApiResponse(code = 400, message = "Usuário não encontrado ou endereço inválido")
+    })
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping("/{idUsuario}/enderecos")
+    public ResponseEntity<Void> associarEndereco(@PathVariable Long idUsuario, @RequestBody @Valid EnderecoRequest enderecoRequest) {
+        validarUsuario(idUsuario);
+        validarEndereco(enderecoRequest.cep());
+        Endereco endereco = enderecoRepository.save(enderecoRequest.toEndereco(idUsuario));
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}/enderecos/{id}").buildAndExpand(idUsuario, endereco.getId()).toUri();
         return ResponseEntity.created(uri).build();
 
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UsuarioResponse> buscarPorId(@PathVariable Long id) {
-        UsuarioResponse response = validarUsuario(id).toUsuarioResponse();
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Usuário encontrado", response = UsuarioResponse.class),
+            @ApiResponse(code = 404, message = "Usuário não encontrado")
+    })
+    @GetMapping("/{idUsuario}")
+    public ResponseEntity<UsuarioResponse> buscarPorId(@PathVariable Long idUsuario) {
+        UsuarioResponse response = validarUsuario(idUsuario).toUsuarioResponse();
         return ResponseEntity.ok(response);
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Usuário criado com sucesso"),
+            @ApiResponse(code = 400, message = "Usuário inválido")
+    })
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseEntity<Void> inserir(@RequestBody @Valid UsuarioRequest request) {
-        Usuario usuario = usuarioRepository.save(request.toUsuario());
+    public ResponseEntity<Void> inserir(@RequestBody @Valid UsuarioRequest usuarioRequest) {
+        Usuario usuario = usuarioRepository.save(usuarioRequest.toUsuario());
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usuario.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
@@ -81,8 +98,8 @@ public class UsuarioController {
         }
     }
 
-    private Usuario validarUsuario(Long id) {
-        return usuarioRepository.findById(id)
+    private Usuario validarUsuario(Long idUsuario) {
+        return usuarioRepository.findById(idUsuario)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "usuario.naoEncontrado"));
     }
 
