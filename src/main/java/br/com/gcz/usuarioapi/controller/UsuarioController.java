@@ -17,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -63,7 +62,7 @@ public class UsuarioController {
             @ApiResponse(code = 400, message = "Usuário não encontrado ou endereço inválido")
     })
     @ResponseStatus(HttpStatus.CREATED)
-    @PutMapping("/{idUsuario}/enderecos")
+    @PostMapping("/{idUsuario}/enderecos")
     public ResponseEntity<Void> associarEndereco(@PathVariable Long idUsuario, @RequestBody @Valid EnderecoRequest enderecoRequest) {
         validarUsuario(idUsuario);
         validarEndereco(enderecoRequest.cep());
